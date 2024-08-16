@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CardDetailsView: View {
+    var networkManager = NetworkManager.shared
     var body: some View {
         VStack {
             VStack(alignment: .leading, spacing: 20) {
@@ -102,6 +103,16 @@ struct CardDetailsView: View {
         .padding(.top, 16)
         .padding(.bottom, 10)
         .navigationTitle("Педиатр")
+        .onAppear(perform: {
+            networkManager.fetchData {result in
+                switch result {
+                case .success(let data):
+                    print(data.record.data.users?.count)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        })
     }
 }
 

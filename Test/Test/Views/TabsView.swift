@@ -13,6 +13,7 @@ enum Tab {
     case profile
 }
 struct TabsView: View {
+    
     var body: some View {
         TabView {
             NavigationStack {
