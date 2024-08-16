@@ -22,6 +22,7 @@
 		2551F0C22C6F749E00B2E65A /* PriceDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2551F0C12C6F749E00B2E65A /* PriceDetailsView.swift */; };
 		2551F0C42C6FA43300B2E65A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2551F0C32C6FA43300B2E65A /* NetworkManager.swift */; };
 		2551F0C62C6FAA2F00B2E65A /* NetworkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2551F0C52C6FAA2F00B2E65A /* NetworkData.swift */; };
+		2551F0C82C6FE11B00B2E65A /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2551F0C72C6FE11B00B2E65A /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		2551F0C12C6F749E00B2E65A /* PriceDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceDetailsView.swift; sourceTree = "<group>"; };
 		2551F0C32C6FA43300B2E65A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		2551F0C52C6FAA2F00B2E65A /* NetworkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkData.swift; sourceTree = "<group>"; };
+		2551F0C72C6FE11B00B2E65A /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 		2551F0AE2C6F4DBB00B2E65A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				2551F0C72C6FE11B00B2E65A /* MainViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				2551F0C22C6F749E00B2E65A /* PriceDetailsView.swift in Sources */,
 				2551F0B22C6F4E6300B2E65A /* DoctorCard.swift in Sources */,
 				2551F0B42C6F4F8000B2E65A /* TabsView.swift in Sources */,
+				2551F0C82C6FE11B00B2E65A /* MainViewModel.swift in Sources */,
 				2551F0BC2C6F599C00B2E65A /* DoctorStackView.swift in Sources */,
 				2551F0B82C6F51C100B2E65A /* ChatView.swift in Sources */,
 				2551F0C02C6F697A00B2E65A /* CardDetailsView.swift in Sources */,

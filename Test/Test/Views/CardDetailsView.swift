@@ -8,26 +8,37 @@
 import SwiftUI
 
 struct CardDetailsView: View {
-    var networkManager = NetworkManager.shared
+    var doctor: User
+    init(doctor: User) {
+        self.doctor = doctor
+    }
     var body: some View {
         VStack {
             VStack(alignment: .leading, spacing: 20) {
                 HStack(spacing: 16) {
-                    Image(systemName: "person.circle.fill")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 50, height: 50)
-                    VStack(alignment: .leading) {
-                        Text("Семенова")
-                        Text("Дарья Сергеевна")
+                    AsyncImage(url: URL(string: doctor.avatar ?? "")) { image in
+                        image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 50, height: 50)
+                            .clipShape(Circle())
+                    } placeholder: {
+                        Image(systemName: "person.circle")
+                            .resizable()
+                            .frame(width: 50, height: 50)
                     }
+                    VStack(alignment: .leading) {
+                        Text(doctor.lastName ?? "")
+                        Text("\(doctor.firstName ?? "") \(doctor.patronymic ?? "")")
+                    }
+                    .font(.system(size: 16, weight: .semibold))
                 }
                 VStack(alignment: .leading, spacing: 10) {
                     HStack(spacing: 12) {
                         Image(systemName: "clock")
                             .resizable()
                             .frame(width: 24, height: 24)
-                        Text("Опыт работы: 27 лет")
+                        Text("Опыт работы: \(doctor.seniority ?? 0) лет")
                     }
                     HStack(spacing: 12) {
                         Image(systemName: "cross.case")
@@ -48,6 +59,7 @@ struct CardDetailsView: View {
                         Text("Детская клиника “РебёнОК” ")
                     }
                 }
+                .font(.system(size: 14))
                 .foregroundStyle(.gray)
                 VStack(spacing: 24) {
                     NavigationLink(destination: {
@@ -56,7 +68,7 @@ struct CardDetailsView: View {
                             .background(Color(#colorLiteral(red: 0.9607843757, green: 0.9607842565, blue: 0.9607843757, alpha: 1)))
                     }, label: {
                         RoundedRectangle(cornerRadius: 8)
-                            .fill(.yellow)
+                            .fill(.white)
                             .frame(height: 60)
                             .frame(maxWidth: .infinity)
                             .overlay {
@@ -73,6 +85,7 @@ struct CardDetailsView: View {
                     .buttonStyle(PlainButtonStyle())
                     
                     Text("Проводит диагностику и лечение терапевтических больных. Осуществляет расшифровку и снятие ЭКГ. Дает рекомендации по диетологии. Доктор имеет опыт работы в России и зарубежом. Проводит консультации пациентов на английском языке.")
+                        .lineSpacing(10)
                         .font(.system(size: 14))
                         .multilineTextAlignment(.leading)
                 }
@@ -103,19 +116,9 @@ struct CardDetailsView: View {
         .padding(.top, 16)
         .padding(.bottom, 10)
         .navigationTitle("Педиатр")
-        .onAppear(perform: {
-            networkManager.fetchData {result in
-                switch result {
-                case .success(let data):
-                    print(data.record.data.users?.count)
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
-        })
     }
 }
 
-#Preview {
-    CardDetailsView()
-}
+//#Preview {
+//    CardDetailsView()
+//}

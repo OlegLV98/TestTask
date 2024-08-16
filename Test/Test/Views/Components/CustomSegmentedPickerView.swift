@@ -12,8 +12,9 @@ enum Segment {
     case rating
 }
 struct CustomSegmentedPickerView: View {
-    @State var selection: Segment = .price
-    init() {
+    @Binding var selection: Segment
+    init(selection: Binding<Segment>) {
+        self._selection = selection
         UISegmentedControl.appearance().selectedSegmentTintColor = #colorLiteral(red: 1, green: 0.2428272963, blue: 0.4787892699, alpha: 1)
         let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.white]
         UISegmentedControl.appearance().setTitleTextAttributes(attributes, for: .selected)
@@ -30,8 +31,4 @@ struct CustomSegmentedPickerView: View {
         .pickerStyle(.segmented)
             
     }
-}
-
-#Preview {
-    CustomSegmentedPickerView()
 }

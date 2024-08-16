@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct DoctorCard: View {
+    var doctor: User
+    init(doctor: User) {
+        self.doctor = doctor
+    }
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
@@ -16,31 +20,51 @@ struct DoctorCard: View {
                 .frame(maxWidth: .infinity)
             VStack(spacing: 15) {
                 HStack(alignment: .top,spacing: 16) {
-                    Image(systemName: "person.circle")
-                        .resizable()
-                        .frame(width: 50, height: 50)
+                    AsyncImage(url: URL(string: doctor.avatar ?? "")) { image in
+                        image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 50, height: 50)
+                            .clipShape(Circle())
+                    } placeholder: {
+                        Image(systemName: "person.circle")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                    }
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("Осташков")
+                        Text(doctor.lastName ?? "")
                             .font(.system(size: 16, weight: .semibold))
-                        Text("Кирилл Вячеславович")
+                        Text("\(doctor.firstName ?? "") \(doctor.patronymic ?? "")")
                             .font(.system(size: 16, weight: .semibold))
                         HStack(spacing: 2.4) {
-                            ForEach(0..<5) {_ in
+                            let rating = Int(doctor.ratingsRating ?? 0)
+                            ForEach(0..<rating, id: \.self) {_ in
                                 Image(systemName: "star.fill")
                                     .resizable()
                                     .frame(width: 12, height: 12)
+                                    .foregroundStyle(Color(#colorLiteral(red: 1, green: 0.2428272963, blue: 0.4787892699, alpha: 1)))
+                            }
+                            ForEach(rating..<5, id: \.self) {_ in
+                                Image(systemName: "star.fill")
+                                    .resizable()
+                                    .frame(width: 12, height: 12)
+                                    .foregroundStyle(Color(#colorLiteral(red: 0.5924944878, green: 0.5924944878, blue: 0.5924944878, alpha: 1)))
                             }
                         }
-                        Text("Педиатр・стаж 9 лет")
+                        Text("Педиатр・стаж \(doctor.seniority ?? 0) лет")
                             .font(.system(size: 14))
                         Text("от 400 ₽")
                             .font(.system(size: 16, weight: .semibold))
                     }
                     Spacer()
-                    Image(systemName: "suit.heart.fill")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 24, height: 24)
+                    Button(action: {}) {
+                        Image(systemName: doctor.isFavorite ?? false ? "suit.heart.fill" : "suit.heart")
+                            .resizable()
+                            .scaledToFill()
+                            .foregroundStyle(.black)
+                            .frame(width: 24, height: 24)
+                    }
+                    .buttonStyle(BorderlessButtonStyle())
                 }
                 Button(action: {}, label: {
                     if true {
@@ -71,8 +95,4 @@ struct DoctorCard: View {
         }
         
     }
-}
-
-#Preview {
-    DoctorCard()
 }
