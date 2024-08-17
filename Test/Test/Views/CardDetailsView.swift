@@ -36,25 +36,25 @@ struct CardDetailsView: View {
                 }
                 VStack(alignment: .leading, spacing: 10) {
                     HStack(spacing: 12) {
-                        Image(systemName: "clock")
+                        Image("clock")
                             .resizable()
                             .frame(width: 24, height: 24)
                         Text("Опыт работы: \(doctor.seniority ?? 0) лет")
                     }
                     HStack(spacing: 12) {
-                        Image(systemName: "cross.case")
+                        Image("bag")
                             .resizable()
                             .frame(width: 24, height: 24)
                         Text("Врач высшей категории")
                     }
                     HStack(spacing: 12) {
-                        Image(systemName: "graduationcap.fill")
+                        Image("hat")
                             .resizable()
                             .frame(width: 24, height: 24)
                         Text("1-й ММИ им. И.М.Сеченова")
                     }
                     HStack(spacing: 12) {
-                        Image(systemName: "mappin.circle")
+                        Image("location")
                             .resizable()
                             .frame(width: 24, height: 24)
                         Text("Детская клиника “РебёнОК” ")
@@ -84,12 +84,13 @@ struct CardDetailsView: View {
                             }
                     })
                     .buttonStyle(PlainButtonStyle())
-                    
-                    Text("Проводит диагностику и лечение терапевтических больных. Осуществляет расшифровку и снятие ЭКГ. Дает рекомендации по диетологии. Доктор имеет опыт работы в России и зарубежом. Проводит консультации пациентов на английском языке.")
-                        .lineSpacing(10)
-                        .font(.system(size: 14))
-                        .multilineTextAlignment(.leading)
-                        .foregroundStyle(.appBlack)
+                    ScrollView {
+                        Text("Проводит диагностику и лечение терапевтических больных. Осуществляет расшифровку и снятие ЭКГ. Дает рекомендации по диетологии. Доктор имеет опыт работы в России и зарубежом. Проводит консультации пациентов на английском языке.")
+                            .lineSpacing(10)
+                            .font(.system(size: 14))
+                            .multilineTextAlignment(.leading)
+                            .foregroundStyle(.appBlack)
+                    }
                 }
             }
             Spacer()
@@ -101,33 +102,19 @@ struct CardDetailsView: View {
                         true ? Text("Записаться") : Text("Нет свободного расписания")
                     }
                     .foregroundStyle(true ? .appWhite : .appBlack)
-//                if true {
-//                    RoundedRectangle(cornerRadius: 8)
-//                        .fill(.appPink)
-//                        .frame(height: 56)
-//                        .overlay {
-//                            Text("Записаться")
-//                                .foregroundStyle(.white)
-//                        }
-//                } else {
-//                    RoundedRectangle(cornerRadius: 8)
-//                        .fill(.appGray)
-//                        .frame(height: 56)
-//                        .overlay {
-//                            Text("Нет свободного расписания")
-//                                .foregroundStyle(.black)
-//                        }
-//                }
             })
+            .padding(.bottom, 59)
             .font(.system(size: 16, weight: .semibold))
         }
         .padding(.horizontal, 16)
         .padding(.top, 16)
-        .padding(.bottom, 10)
-        .navigationTitle("Педиатр")
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("Педиатр")
+                    .foregroundStyle(.appBlack)
+                    .font(.system(size: 20))
+            }
+        }
     }
 }
 
-//#Preview {
-//    CardDetailsView()
-//}

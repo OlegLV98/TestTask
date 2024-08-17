@@ -24,6 +24,8 @@
 		2551F0C62C6FAA2F00B2E65A /* NetworkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2551F0C52C6FAA2F00B2E65A /* NetworkData.swift */; };
 		2551F0C82C6FE11B00B2E65A /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2551F0C72C6FE11B00B2E65A /* MainViewModel.swift */; };
 		2551F0D22C70C3E900B2E65A /* ButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2551F0D12C70C3E900B2E65A /* ButtonModifier.swift */; };
+		2551F0D52C7145E500B2E65A /* TabButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2551F0D42C7145E500B2E65A /* TabButtonStyle.swift */; };
+		2551F0D72C71538F00B2E65A /* CustomBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2551F0D62C71538F00B2E65A /* CustomBadge.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		2551F0C52C6FAA2F00B2E65A /* NetworkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkData.swift; sourceTree = "<group>"; };
 		2551F0C72C6FE11B00B2E65A /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		2551F0D12C70C3E900B2E65A /* ButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModifier.swift; sourceTree = "<group>"; };
+		2551F0D42C7145E500B2E65A /* TabButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButtonStyle.swift; sourceTree = "<group>"; };
+		2551F0D62C71538F00B2E65A /* CustomBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBadge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,9 +81,9 @@
 		2551F09C2C6F4D9900B2E65A /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				2551F0CD2C70AFA300B2E65A /* Helpers */,
 				2551F0AB2C6F4DA400B2E65A /* Application */,
-				2551F0C32C6FA43300B2E65A /* NetworkManager.swift */,
+				2551F0D82C71626900B2E65A /* Services */,
+				2551F0CD2C70AFA300B2E65A /* Helpers */,
 				2551F0AC2C6F4DAE00B2E65A /* Models */,
 				2551F0AD2C6F4DB400B2E65A /* Views */,
 				2551F0AE2C6F4DBB00B2E65A /* ViewModels */,
@@ -150,6 +154,7 @@
 				2551F0B12C6F4E6300B2E65A /* DoctorCard.swift */,
 				2551F0BB2C6F599C00B2E65A /* DoctorStackView.swift */,
 				2551F0BD2C6F5C1D00B2E65A /* CustomSegmentedPickerView.swift */,
+				2551F0D62C71538F00B2E65A /* CustomBadge.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -158,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				2551F0D32C70C49200B2E65A /* Modifiers */,
+				2551F0D42C7145E500B2E65A /* TabButtonStyle.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -168,6 +174,14 @@
 				2551F0D12C70C3E900B2E65A /* ButtonModifier.swift */,
 			);
 			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		2551F0D82C71626900B2E65A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2551F0C32C6FA43300B2E65A /* NetworkManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,7 +257,9 @@
 				2551F0C42C6FA43300B2E65A /* NetworkManager.swift in Sources */,
 				2551F0B62C6F51B400B2E65A /* CalendarView.swift in Sources */,
 				2551F0A02C6F4D9900B2E65A /* MainView.swift in Sources */,
+				2551F0D52C7145E500B2E65A /* TabButtonStyle.swift in Sources */,
 				2551F0BE2C6F5C1D00B2E65A /* CustomSegmentedPickerView.swift in Sources */,
+				2551F0D72C71538F00B2E65A /* CustomBadge.swift in Sources */,
 				2551F0C22C6F749E00B2E65A /* PriceDetailsView.swift in Sources */,
 				2551F0B22C6F4E6300B2E65A /* DoctorCard.swift in Sources */,
 				2551F0B42C6F4F8000B2E65A /* TabsView.swift in Sources */,

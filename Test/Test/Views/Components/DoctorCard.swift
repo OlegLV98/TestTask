@@ -15,6 +15,7 @@ struct DoctorCard: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
+                .stroke(.appGray, lineWidth: 1)
                 .fill(.appWhite)
                 .frame(height: 224)
                 .frame(maxWidth: .infinity)
@@ -69,23 +70,6 @@ struct DoctorCard: View {
                             true ? Text("Записаться") : Text("Нет свободного расписания")
                         }
                         .foregroundStyle(true ? .appWhite : .appBlack)
-//                    if true {
-//                        RoundedRectangle(cornerRadius: 8)
-//                            .fill(.appPink)
-//                            .frame(height: 47)
-//                            .overlay {
-//                                Text("Записаться")
-//                                    .foregroundStyle(.white)
-//                            }
-//                    } else {
-//                        RoundedRectangle(cornerRadius: 8)
-//                            .fill(.appGray)
-//                            .frame(height: 47)
-//                            .overlay {
-//                                Text("Нет свободного расписания")
-//                                    .foregroundStyle(.black)
-//                            }
-//                    }
                 })
                 .font(.system(size: 16, weight: .semibold))
             }

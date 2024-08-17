@@ -40,7 +40,13 @@ struct MainView: View {
             DoctorStackView(doctors: filteredDoctors)
         }
         .padding(.horizontal, 15)
-        .navigationTitle("Педиатры")
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("Педиатры")
+                    .foregroundStyle(.appBlack)
+                    .font(.system(size: 20))
+            }
+        }
         .navigationBarTitleDisplayMode(.inline)
         .searchable(text: $searchTerm, prompt: Text("Поиск"))
     }

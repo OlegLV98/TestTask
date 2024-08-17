@@ -15,7 +15,7 @@ struct PriceDetailsView: View {
                     Text("Видеоконсультация")
                         .fontWeight(.semibold)
                     RoundedRectangle(cornerRadius: 8)
-                        .fill(.white)
+                        .fill(.appWhite)
                         .frame(height: 56)
                         .frame(maxWidth: .infinity)
                         .overlay {
@@ -31,10 +31,16 @@ struct PriceDetailsView: View {
             }
             Spacer()
         }
-        .frame(height: .infinity)
+        .foregroundStyle(.appBlack)
         .font(.system(size: 16))
         .padding(16)
-        .navigationTitle("Стоимость услуг")
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("Стоимость услуг")
+                    .foregroundStyle(.appBlack)
+                    .font(.system(size: 20))
+            }
+        }
     }
 }
 
