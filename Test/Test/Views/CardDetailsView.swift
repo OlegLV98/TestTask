@@ -32,6 +32,7 @@ struct CardDetailsView: View {
                         Text("\(doctor.firstName ?? "") \(doctor.patronymic ?? "")")
                     }
                     .font(.system(size: 16, weight: .semibold))
+                    .foregroundStyle(.appBlack)
                 }
                 VStack(alignment: .leading, spacing: 10) {
                     HStack(spacing: 12) {
@@ -60,15 +61,15 @@ struct CardDetailsView: View {
                     }
                 }
                 .font(.system(size: 14))
-                .foregroundStyle(.gray)
+                .foregroundStyle(.appDarkGray)
                 VStack(spacing: 24) {
                     NavigationLink(destination: {
                         PriceDetailsView()
                             .toolbarRole(.editor)
-                            .background(Color(#colorLiteral(red: 0.9607843757, green: 0.9607842565, blue: 0.9607843757, alpha: 1)))
+                            .background(.appLightGray)
                     }, label: {
                         RoundedRectangle(cornerRadius: 8)
-                            .fill(.white)
+                            .fill(.appWhite)
                             .frame(height: 60)
                             .frame(maxWidth: .infinity)
                             .overlay {
@@ -78,7 +79,7 @@ struct CardDetailsView: View {
                                     Text("от 600 ₽")
                                 }
                                 .padding(.horizontal, 16)
-                                .foregroundStyle(.black)
+                                .foregroundStyle(.appBlack)
                                 .font(.system(size: 16, weight: .semibold))
                             }
                     })
@@ -88,27 +89,35 @@ struct CardDetailsView: View {
                         .lineSpacing(10)
                         .font(.system(size: 14))
                         .multilineTextAlignment(.leading)
+                        .foregroundStyle(.appBlack)
                 }
             }
             Spacer()
             Button(action: {}, label: {
-                if true {
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(Color(#colorLiteral(red: 1, green: 0.2428272963, blue: 0.4787892699, alpha: 1)))
-                        .frame(height: 56)
-                        .overlay {
-                            Text("Записаться")
-                                .foregroundStyle(.white)
-                        }
-                } else {
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(.gray)
-                        .frame(height: 56)
-                        .overlay {
-                            Text("Нет свободного расписания")
-                                .foregroundStyle(.black)
-                        }
-                }
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(true ? .appPink : .appGray)
+                    .frame(height: 56)
+                    .overlay {
+                        true ? Text("Записаться") : Text("Нет свободного расписания")
+                    }
+                    .foregroundStyle(true ? .appWhite : .appBlack)
+//                if true {
+//                    RoundedRectangle(cornerRadius: 8)
+//                        .fill(.appPink)
+//                        .frame(height: 56)
+//                        .overlay {
+//                            Text("Записаться")
+//                                .foregroundStyle(.white)
+//                        }
+//                } else {
+//                    RoundedRectangle(cornerRadius: 8)
+//                        .fill(.appGray)
+//                        .frame(height: 56)
+//                        .overlay {
+//                            Text("Нет свободного расписания")
+//                                .foregroundStyle(.black)
+//                        }
+//                }
             })
             .font(.system(size: 16, weight: .semibold))
         }

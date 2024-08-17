@@ -19,7 +19,7 @@ struct DoctorStackView: View {
                     NavigationLink(destination: {
                         CardDetailsView(doctor: doctor)
                             .toolbarRole(.editor)
-                            .background(Color(#colorLiteral(red: 0.9607843757, green: 0.9607842565, blue: 0.9607843757, alpha: 1)))
+                            .background(.appLightGray)
                     }, label: {
                         DoctorCard(doctor: doctor)
                     })
