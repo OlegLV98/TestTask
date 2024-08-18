@@ -50,7 +50,6 @@ struct MainView: View {
         .navigationBarTitleDisplayMode(.inline)
         .searchable(text: $searchTerm, prompt: Text("Поиск"))
     }
-    
 }
 
 #Preview {

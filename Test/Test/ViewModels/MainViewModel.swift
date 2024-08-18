@@ -16,7 +16,6 @@ class MainViewModel: ObservableObject {
     
     @Published var doctors: Users = []
     
-    
     func getDoctors() {
         networkManager.fetchData { result in
             switch result {

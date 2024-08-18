@@ -52,6 +52,4 @@ class NetworkManager: NetworkmanagerProtocol {
             completion(.success(jsonData))
         }.resume()
     }
-    
-    
 }

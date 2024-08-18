@@ -26,30 +26,44 @@ struct User: Identifiable {
     var firstName: String?
     var patronymic: String?
     var lastName: String?
-    var genderLabel: String?
     var textChatPrice: Int?
     var videoChatPrice: Int?
+    var homePrice: Int?
     var hospitalPrice: Int?
     var avatar: String?
-    var scientificDegreeLabel: String?
-    var categoryLabel: String?
     var isFavorite: Bool?
     var ratingsRating: Double?
     var seniority: Int?
+    var category: Int?
+    var educationTypeLabel: Education?
+    var freeReceptionTime: [FreeReceptionTime]
+    var workExpirience: [WorkExpirience]
 }
 
+struct Education: Decodable {
+    var name: String?
+}
+
+struct FreeReceptionTime: Decodable {
+    var time: Int?
+}
+
+struct WorkExpirience: Decodable {
+    var organization:String?
+}
 extension User: Decodable {
     enum CodingKeys: String, CodingKey {
-        case id, patronymic, avatar, seniority
+        case id, patronymic, avatar, seniority, category
+        case homePrice = "home_price"
         case firstName = "first_name"
         case lastName = "last_name"
-        case genderLabel = "gender_label"
         case textChatPrice = "text_chat_price"
         case videoChatPrice = "video_chat_price"
         case hospitalPrice = "hospital_price"
-        case scientificDegreeLabel = "scientific_degree_label"
-        case categoryLabel = "category_label"
         case isFavorite = "is_favorite"
         case ratingsRating = "ratings_rating"
+        case educationTypeLabel = "education_type_label"
+        case freeReceptionTime = "free_reception_time"
+        case workExpirience = "work_expirience"
     }
 }

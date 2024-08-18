@@ -9,9 +9,15 @@ import SwiftUI
 
 struct CardDetailsView: View {
     var doctor: User
-    init(doctor: User) {
+    let minPrice: Int
+    init(doctor: User, minPrice: Int) {
         self.doctor = doctor
+        self.minPrice = minPrice
     }
+    var hasReceptionTime: Bool {
+        !doctor.freeReceptionTime.isEmpty
+    }
+    
     var body: some View {
         VStack {
             VStack(alignment: .leading, spacing: 20) {
@@ -35,38 +41,23 @@ struct CardDetailsView: View {
                     .foregroundStyle(.appBlack)
                 }
                 VStack(alignment: .leading, spacing: 10) {
-                    HStack(spacing: 12) {
-                        Image("clock")
-                            .resizable()
-                            .frame(width: 24, height: 24)
-                        Text("Опыт работы: \(doctor.seniority ?? 0) лет")
-                    }
-                    HStack(spacing: 12) {
-                        Image("bag")
-                            .resizable()
-                            .frame(width: 24, height: 24)
-                        Text("Врач высшей категории")
-                    }
-                    HStack(spacing: 12) {
-                        Image("hat")
-                            .resizable()
-                            .frame(width: 24, height: 24)
-                        Text("1-й ММИ им. И.М.Сеченова")
-                    }
-                    HStack(spacing: 12) {
-                        Image("location")
-                            .resizable()
-                            .frame(width: 24, height: 24)
-                        Text("Детская клиника “РебёнОК” ")
-                    }
+                    categoryLabel(icon: "clock",
+                                  text: "Опыт работы: \(doctor.seniority ?? 0) лет")
+                    categoryLabel(icon: "bag",
+                                  text: "\(categoryLabel(category: doctor.category ?? 0))")
+                    categoryLabel(icon: "hat",
+                                  text: "\(doctor.educationTypeLabel?.name ?? "")")
+                    categoryLabel(icon: "location",
+                                  text: !doctor.workExpirience.isEmpty ? "\(doctor.workExpirience[0].organization ?? "")" : "")
                 }
                 .font(.system(size: 14))
                 .foregroundStyle(.appDarkGray)
                 VStack(spacing: 24) {
                     NavigationLink(destination: {
-                        PriceDetailsView()
+                        PriceDetailsView(doctor: doctor)
                             .toolbarRole(.editor)
                             .background(.appLightGray)
+                            .ignoresSafeArea(edges: .bottom)
                     }, label: {
                         RoundedRectangle(cornerRadius: 8)
                             .fill(.appWhite)
@@ -76,7 +67,7 @@ struct CardDetailsView: View {
                                 HStack {
                                     Text("Стоимость услуг")
                                     Spacer()
-                                    Text("от 600 ₽")
+                                    Text("от \(minPrice) ₽")
                                 }
                                 .padding(.horizontal, 16)
                                 .foregroundStyle(.appBlack)
@@ -86,7 +77,8 @@ struct CardDetailsView: View {
                     .buttonStyle(PlainButtonStyle())
                     ScrollView {
                         Text("Проводит диагностику и лечение терапевтических больных. Осуществляет расшифровку и снятие ЭКГ. Дает рекомендации по диетологии. Доктор имеет опыт работы в России и зарубежом. Проводит консультации пациентов на английском языке.")
-                            .lineSpacing(10)
+                            .tracking(-0.4)
+                            .lineSpacing(8)
                             .font(.system(size: 14))
                             .multilineTextAlignment(.leading)
                             .foregroundStyle(.appBlack)
@@ -96,18 +88,20 @@ struct CardDetailsView: View {
             Spacer()
             Button(action: {}, label: {
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(true ? .appPink : .appGray)
+                    .fill(hasReceptionTime ? .appPink : .appGray)
                     .frame(height: 56)
                     .overlay {
-                        true ? Text("Записаться") : Text("Нет свободного расписания")
+                        hasReceptionTime ? Text("Записаться") : Text("Нет свободного расписания")
                     }
-                    .foregroundStyle(true ? .appWhite : .appBlack)
+                    .foregroundStyle(hasReceptionTime ? .appWhite : .appBlack)
             })
-            .padding(.bottom, 59)
             .font(.system(size: 16, weight: .semibold))
         }
-        .padding(.horizontal, 16)
+        .frame(maxWidth: .infinity)
         .padding(.top, 16)
+        .padding(.horizontal, 16)
+        .padding(.bottom, 93)
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Text("Педиатр")
@@ -116,5 +110,28 @@ struct CardDetailsView: View {
             }
         }
     }
+    @ViewBuilder
+    func categoryLabel(icon: String, text: String) -> some View {
+        HStack(spacing: 12) {
+            Image(icon)
+                .resizable()
+                .frame(width: 24, height: 24)
+            Text(text)
+        }
+    }
+    
+    func categoryLabel(category: Int) -> String {
+        switch category {
+        case 1: "Врач второй категории"
+        case 2: "Врач первой категории"
+        case 3: "Врач высшей категории"
+        default: ""
+        }
+    }
 }
 
+#Preview {
+    CardDetailsView(doctor: User(
+        id: "4", firstName: "efvr", lastName: "efv",textChatPrice: 4, videoChatPrice: 4, freeReceptionTime: [FreeReceptionTime(time: 4)], workExpirience: []
+    ), minPrice: 3)
+}

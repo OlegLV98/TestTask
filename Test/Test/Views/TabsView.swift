@@ -36,25 +36,29 @@ struct TabsView: View {
     @State private var selection: Tab = .main
     init() {
         UITabBarItem.appearance().badgeColor = .appPink
+        UITabBar.appearance().backgroundColor = .yellow
     }
     var body: some View {
-            ZStack {
                 TabView(selection: $selection) {
-                        ForEach(Tab.allCases, id: \.self) {tab in
-                            NavigationStack {
-                                tab.view
-                                    .background(.appLightGray)
-                            }
-                            .tag(tab)
-                        }.toolbar(.hidden, for: .tabBar)
+                    ForEach(Tab.allCases, id: \.self) {tab in
+                        NavigationStack {
+                            tab.view
+                                .background(.appLightGray)
+                                .toolbar(.hidden, for: .tabBar)
+                                .ignoresSafeArea(edges: .bottom)
+                        }
+                        .tag(tab)
+                    }
                 }
-                
-                VStack {
-                    Spacer()
-                    tabBar
-                }.ignoresSafeArea()
-            }
+                .overlay {
+                    VStack {
+                        Spacer()
+                        tabBar
+                    }
+                    .ignoresSafeArea(edges: .bottom)
+                }
     }
+    
     private var tabBar: some View {
         HStack(spacing: 0) {
             ForEach(Tab.allCases, id: \.self) {tab in
