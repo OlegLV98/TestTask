@@ -69,16 +69,19 @@ struct DoctorCard: View {
                         }
                         .buttonStyle(BorderlessButtonStyle())
                     }
-                    Button(action: {}, label: {
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(hasReceptionTime ? .appPink : .appGray)
-                            .frame(height: 47)
-                            .overlay {
-                                hasReceptionTime ? Text("Записаться") : Text("Нет свободного расписания")
-                            }
-                            .foregroundStyle(hasReceptionTime ? .appWhite : .appBlack)
+                    NavigationLink(destination: {
+                        CardDetailsView(doctor: doctor, minPrice: minPrice)
+                    }, label: {
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(hasReceptionTime ? .appPink : .appGray)
+                                .frame(height: 47)
+                                .overlay {
+                                    hasReceptionTime ? Text("Записаться") : Text("Нет свободного расписания")
+                                }
+                                .foregroundStyle(hasReceptionTime ? .appWhite : .appBlack)
+                                .font(.system(size: 16, weight: .semibold))
                     })
-                    .font(.system(size: 16, weight: .semibold))
+                    .buttonStyle(PlainButtonStyle())
                 }
                 .frame(height: 188)
                 .frame(maxWidth: .infinity)
@@ -91,6 +94,6 @@ struct DoctorCard: View {
 
 #Preview {
     DoctorCard(doctor: User(
-        id: "4", firstName: "efvr", lastName: "efv",textChatPrice: 4, videoChatPrice: 4, freeReceptionTime: [FreeReceptionTime(time: 4)], workExpirience: []
-    ), minPrice: 5)
+        id: "4", firstName: "Дарья", lastName: "Семенова", textChatPrice: 600, videoChatPrice: 600, freeReceptionTime: [FreeReceptionTime(time: 20/08/2024)], workExpirience: []
+    ),minPrice: 600)
 }

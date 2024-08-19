@@ -55,9 +55,6 @@ struct CardDetailsView: View {
                 VStack(spacing: 24) {
                     NavigationLink(destination: {
                         PriceDetailsView(doctor: doctor)
-                            .toolbarRole(.editor)
-                            .background(.appLightGray)
-                            .ignoresSafeArea(edges: .bottom)
                     }, label: {
                         RoundedRectangle(cornerRadius: 8)
                             .fill(.appWhite)
@@ -101,6 +98,9 @@ struct CardDetailsView: View {
         .padding(.top, 16)
         .padding(.horizontal, 16)
         .padding(.bottom, 93)
+        .toolbarRole(.editor)
+        .background(.appLightGray)
+        .ignoresSafeArea(edges: .bottom)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .principal) {
@@ -132,6 +132,6 @@ struct CardDetailsView: View {
 
 #Preview {
     CardDetailsView(doctor: User(
-        id: "4", firstName: "efvr", lastName: "efv",textChatPrice: 4, videoChatPrice: 4, freeReceptionTime: [FreeReceptionTime(time: 4)], workExpirience: []
-    ), minPrice: 3)
+        id: "4", firstName: "Дарья", lastName: "Семенова", textChatPrice: 600, videoChatPrice: 600, freeReceptionTime: [FreeReceptionTime(time: 20/08/2024)], workExpirience: []
+    ), minPrice: 600)
 }

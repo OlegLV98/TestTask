@@ -38,6 +38,9 @@ struct PriceDetailsView: View {
                 }
             }
         }
+        .toolbarRole(.editor)
+        .background(.appLightGray)
+        .ignoresSafeArea(edges: .bottom)
     }
     @ViewBuilder
     func priceLabel(place: Place, time: String, price: Int) -> some View {
@@ -63,6 +66,6 @@ struct PriceDetailsView: View {
 
 #Preview {
     PriceDetailsView(doctor: User(
-        id: "4", firstName: "efvr", lastName: "efv",textChatPrice: 4, videoChatPrice: 4, freeReceptionTime: [FreeReceptionTime(time: 4)], workExpirience: []
+        id: "4", firstName: "Дарья", lastName: "Семенова", textChatPrice: 600, videoChatPrice: 600, freeReceptionTime: [FreeReceptionTime(time: 20/08/2024)], workExpirience: []
     ))
 }

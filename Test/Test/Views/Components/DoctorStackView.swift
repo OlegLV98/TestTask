@@ -20,18 +20,9 @@ struct DoctorStackView: View {
                     var minPrice: Int {
                         [doctor.homePrice, doctor.hospitalPrice, doctor.videoChatPrice, doctor.textChatPrice].compactMap{$0}.min() ?? 0
                     }
-                    NavigationLink(destination: {
-                        CardDetailsView(doctor: doctor, minPrice: minPrice)
-                            .toolbarRole(.editor)
-                            .background(.appLightGray)
-                            .ignoresSafeArea(edges: .bottom)
-                    }, label: {
-                        DoctorCard(doctor: doctor, minPrice: minPrice)
-                    })
-                    .buttonStyle(PlainButtonStyle())
+                    DoctorCard(doctor: doctor, minPrice: minPrice)
                 }
             }
-            
         }
         .contentMargins(.bottom, 10, for: .scrollContent)
         .padding(.bottom, 83)
