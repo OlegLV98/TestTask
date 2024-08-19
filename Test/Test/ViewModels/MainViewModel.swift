@@ -13,20 +13,29 @@ class MainViewModel: ObservableObject {
     }
     
     let networkManager = NetworkManager.shared
+    let dataManager = DataManager.shared
     
     @Published var doctors: Users = []
     
     func getDoctors() {
-        networkManager.fetchData { result in
-            switch result {
-            case .success(let data):
-                DispatchQueue.main.async {[weak self] in
-                    guard let self else {return}
-                    doctors = data.record.data.users ?? []
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+        // MARK: getData from File
+        let result = dataManager.loadDataFromJSON(name: "data")
+        switch result {
+        case .success(let receivedData): doctors = receivedData.record.data.users ?? []
+        case .failure(let error): print(error)
         }
+        
+        // MARK: fetchData from Network
+//        networkManager.fetchData { result in
+//            switch result {
+//            case .success(let data):
+//                DispatchQueue.main.async {[weak self] in
+//                    guard let self else {return}
+//                    doctors = data.record.data.users ?? []
+//                }
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
     }
 }

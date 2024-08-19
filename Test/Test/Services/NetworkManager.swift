@@ -10,17 +10,17 @@ enum NetworkError: Error {
     case badData
 }
 
-protocol NetworkmanagerProtocol {
+protocol NetworkManagerProtocol {
     var url: URL? {get set}
-    func fetchData(completion: @escaping (Result<NetworkData, Error>) -> Void)
+    func fetchData(completion: @escaping (Result<ReceivedData, Error>) -> Void)
 }
 
-class NetworkManager: NetworkmanagerProtocol {
+class NetworkManager: NetworkManagerProtocol {
     static let shared = NetworkManager()
     private init() {}
     var url: URL?
     
-    func fetchData(completion: @escaping (Result<NetworkData, Error>) -> Void) {
+    func fetchData(completion: @escaping (Result<ReceivedData, Error>) -> Void) {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "api.jsonbin.io"
@@ -43,7 +43,7 @@ class NetworkManager: NetworkmanagerProtocol {
                 return
             }
     
-            let jsonData = try? JSONDecoder().decode(NetworkData.self, from: data)
+            let jsonData = try? JSONDecoder().decode(ReceivedData.self, from: data)
             
             guard let jsonData else {
                 completion(.failure(NetworkError.badData))

@@ -1,5 +1,5 @@
 //
-//  NetworkData.swift
+//  ReceivedData.swift
 //  Test
 //
 //  Created by Oleg Lesnoy on 16.08.2024.
@@ -9,7 +9,7 @@ import Foundation
 
 typealias Users = [User]
 
-struct NetworkData: Decodable {
+struct ReceivedData: Decodable {
     var record: Record
 }
 
